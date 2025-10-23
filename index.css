@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #0047AB; /* Cobalt Blue */
+  --color-primary-rgb: 0, 71, 171;
+  --color-background: #F5F7FA; /* Light silver-blue */
+  --color-surface: #FFFFFF;
+  --color-text-primary: #111827; /* Gray 900 */
+  --color-text-secondary: #6B7280; /* Gray 500 */
+  --color-text-on-primary: #FFFFFF;
+  --color-border: #E5E7EB; /* Gray 200 */
+}
+
+.dark {
+  --color-primary: #38bdf8; /* sky-400 */
+  --color-primary-rgb: 56, 189, 248;
+  --color-background: #0f172a; /* slate-900 */
+  --color-surface: #1e293b; /* slate-800 */
+  --color-text-primary: #f8fafc; /* slate-50 */
+  --color-text-secondary: #94a3b8; /* slate-400 */
+  --color-text-on-primary: #0f172a; /* slate-900 */
+  --color-border: #334155; /* slate-700 */
+}
+
+/* Custom global styles */
+body {
+  @apply bg-background text-text-primary transition-colors duration-300;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html.dark body {
+    background-image: none;
+}
+
+
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+#root::before {
+  content: 'CitiBank demo business inc';
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-30deg);
+  font-family: theme('fontFamily.serif');
+  font-size: clamp(2rem, 8vw, 6rem); /* Responsive font size */
+  font-weight: bold;
+  color: theme('colors.gold');
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: -1;
+  white-space: nowrap;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-serif text-text-primary;
+}
+
+h1 {
+  @apply text-text-primary;
+}
+
+/* Update primary buttons for a professional look */
+.btn-primary {
+  @apply bg-primary text-text-on-primary font-bold rounded-md hover:opacity-90 transition-all disabled:opacity-50 shadow-md;
+}
+
+/* Custom scrollbars for the new light theme */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-slate-800;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-400 dark:bg-slate-600 rounded;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-500 dark:bg-slate-500;
+}
+
+/* Base transitions for interactive elements */
+button, a, input, textarea, select {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Keyframe Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes shake {
+  10%, 90% { transform: translateX(-1px); }
+  20%, 80% { transform: translateX(2px); }
+  30%, 50%, 70% { transform: translateX(-3px); }
+  40%, 60% { transform: translateX(3px); }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.fade-in { animation: fadeIn 0.5s ease-in-out forwards; }
+.animate-shake { animation: shake 0.4s ease-in-out; }
+.animate-pop-in { animation: pop-in 0.3s ease-out forwards; }
+
+/* For hiding scrollbar but keeping functionality */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { 
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
+  scroll-behavior: smooth;
+}
